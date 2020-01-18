@@ -21,6 +21,10 @@ mysql[exercises]> LOAD DATA INFILE "exercises.txt"
      > LINES TERMINATED BY "\n";
 ```
 
+If it can't connect to the database after you've created it, run
+```
+$ sudo systemctl start mysqld
+```
 
 ## Running the Node.js server (server.js)
 
