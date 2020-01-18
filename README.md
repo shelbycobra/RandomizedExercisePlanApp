@@ -17,3 +17,7 @@ node src/server.js
 ```
 npm start
 ```
+
+## Sample Use
+
+![Sample Use](sample.jpeg)
