@@ -4,3 +4,14 @@ This project was created to practice full-stack development using React.js, Node
 
 The file "exercises.txt" contains a list of all the exercises in the database.
 
+## Running the Node.js server
+
+```
+node src/server.js
+```
+
+## Running the React.js client
+
+```
+npm start
+```
