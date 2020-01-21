@@ -4,9 +4,9 @@ const express = require('express')
 
 const hostname = '127.0.0.1';
 const port = process.env.PORT || 8080;
-
 const app = express();
 
+// Connect to MySQL Database
 var con = mysql.createConnection({
   host: "localhost",
   user: "root",
@@ -28,7 +28,8 @@ app.post('/getexercisebytag', (req, res) => {
   const tag = req.body.tag;
   const currentExercises = req.body.exercises;
 
-  console.log("\n\n\n\nCurrent Exercises: " + currentExercises);
+  console.log("\n\n\n\nCurrent Exercises: ")
+  console.log(currentExercises);
   console.log("Tag: " + tag);
 
   //Send back database info and generate plan on FE.
@@ -44,15 +45,23 @@ app.post('/getexercisebytag', (req, res) => {
       while(true) {
         var randomIndex = Math.floor(Math.random() * numResults);
         randomExercise = result[randomIndex];
-        var resultIndex = currentExercises.indexOf(JSON.stringify(randomExercise));
+        var resultIndex = -1;
+
+        for (var i = 0; i < currentExercises.length; i++) {
+          if (currentExercises[i].name === randomExercise.name 
+            && currentExercises[i].equipment === randomExercise.equipment) {
+            resultIndex = i;
+            break;
+          }
+        }
 
         console.log("\nGeting exercise from database ...\n");
         console.log("Random index: " + randomIndex);
-        console.log("Random Exercise: " + randomExercise.name);
+        console.log("Random Exercise: ");
+        console.log(randomExercise);
         console.log("Current Exercises Index: " + resultIndex);
 
         count++;
-
         if (resultIndex === -1)
           break;
         if (count === numResults) {
@@ -65,7 +74,6 @@ app.post('/getexercisebytag', (req, res) => {
       return res.json({ data : randomExercise })
     }
   });
-
 })
 
 // get all tags

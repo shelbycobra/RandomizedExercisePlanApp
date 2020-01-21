@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 function Exercise(props) {
-
   const options = props.tags.map((tag) => 
     <option key={tag} value={tag}>{(tag.charAt(0).toUpperCase() + tag.substring(1)).replace("_", " ")}</option>
   );
@@ -12,14 +11,12 @@ function Exercise(props) {
     <span className="exercise">
       <select value={props.value} onChange={(e) => props.onChange(e,props.id)}>
         <option value="none">None</option>
-        <option value="rest">REST</option>
         {options}
       </select>
       <button className="deleteSlot" onClick={() => props.onDelete(props.id)}>X</button>
     </span>
   );
 }
-
 
 class ExerciseForm extends React.Component {
 
@@ -145,7 +142,7 @@ class ExerciseForm extends React.Component {
 
   render() {
     const values = this.state.values.slice();
-    const indexes = [...Array(values.length).keys()]
+    const indexes = [...Array(values.length).keys()];
     const exercisesList = indexes.map((i) =>
       <li key={i}>
         <Exercise 
@@ -164,7 +161,7 @@ class ExerciseForm extends React.Component {
       headers = (
         <tr>
           <th>Tag</th>
-          <th>Exercises</th>
+          <th>Exercise</th>
           <th>Equipment</th>
         </tr>
       );
@@ -175,7 +172,6 @@ class ExerciseForm extends React.Component {
         <ul id="exerciseForm">
           {exercisesList}
         </ul>
-        
         <div id="table">
             <button id="addExercise" onClick={this.addExercise}>Add Exercise Slot</button>
             <button id="clear" onClick={this.clearAll}>Clear All</button>
@@ -193,7 +189,6 @@ class ExerciseForm extends React.Component {
 }
 
 class App extends React.Component {
-
   render() {
     return(
       <div>
