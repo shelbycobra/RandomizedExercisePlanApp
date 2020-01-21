@@ -4,18 +4,38 @@ This project was created to practice full-stack development using React.js, Node
 
 It's the lazy way of thinking of new exercises to do at the gym!
 
-The file "exercises.txt" contains a list of all the exercises in the database.
+## Creating MySQL database
 
-## Running the Node.js server
+This is assuming that a database "exercises" is already created with a table called "exercises".
 
-```
-node src/server.js
-```
+The file "exercises.txt" contains a list of all the exercises to be loaded into the database.
 
-## Running the React.js client
 
 ```
-npm start
+$ mysql -u root -p --local-infile=1
+mysql> use exercises
+mysql[exercises]> LOAD DATA INFILE "exercises.txt"
+     > INTO TABLE exercises
+     > FIELDS TERMINATED BY '|'
+     > ENCLOSED BY '"'
+     > LINES TERMINATED BY "\n";
+```
+
+If it can't connect to the database after you've created it, run
+```
+$ sudo systemctl start mysqld
+```
+
+## Running the Node.js server (server.js)
+
+```
+$ node src/server.js
+```
+
+## Running the React.js client (index.js)
+
+```
+$ npm start
 ```
 
 ## Sample Use
